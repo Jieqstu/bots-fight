@@ -37,6 +37,10 @@ public class RegisterServiceImpl implements RegisterService {
             map.put("error_message", "Username cannot be empty");
             return map;
         }
+        if (password.length() == 0 || confirmedPassword.length() == 0) {
+            map.put("error_message", "Password cannot be empty");
+            return map;
+        }
         if (username.length() > 100) {
             map.put("error_message", "Username should contain less than 100 characters");
             return map;
@@ -63,7 +67,7 @@ public class RegisterServiceImpl implements RegisterService {
         User user = new User(null, username, encodedPassword, photo);
         userMapper.insert(user);
 
-        map.put("error_message", "Success");
+        map.put("error_message", "success");
         return map;
     }
 }
